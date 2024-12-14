@@ -1,0 +1,16 @@
+{%include 'header.html'%}
+    <div class="container mt-5">
+        <div class="alert alert-success display-1">CIUDAD</div>
+        <form method='POST'>
+        {%csrf_token %}
+        <table class="table table-striped">
+          <tr><td>ID</td><td>{{ciudad.id}}</td></tr>
+          <tr><td>CIUCODIGO</td><td>{{ciudad.CIUCODIGO}}</td></tr>
+          <tr><td>CIUNOMBRE</td><td>{{ciudad.CIUNOMBRE}}</td></tr>      
+        </table>
+       <a href="../ciudades/" class="btn btn-success">Volver</a>
+       
+        <input type='submit' class='btn btn-danger' value="borrar">
+        </form>
+    </div>
+{%include 'footer.html'%}

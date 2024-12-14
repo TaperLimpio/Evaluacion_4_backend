@@ -1,0 +1,74 @@
+{% include 'header.html' %}
+<div class='container mt-5'>
+    <div class="alert alert-success display-1">Filtrar Matricula por fecha</div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="label">Ingrese el rango de fechas.</label>
+                </div>
+                <div class="mb-3">
+                    <label for="txt_fechainicio" class="form-label">Fecha de inicio</label>
+                    <input type="date" class="form-control" id="txt_fechainicio" name="txt_fechainicio" placeholder="dd-mm-yy">
+                </div>
+                <div class="mb-3">
+                    <label for="txt_fechafinal" class="form-label">Fecha final</label>
+                    <input type="date" class="form-control" id="txt_fechafinal" name="txt_fechafinal" placeholder="dd-mm-yy">
+                </div>
+                <input type="submit" class="btn btn-success" value="filtrar">
+            </div>
+        </div>
+    </form>
+    <div class='container mt-5'>
+        <div class="alert alert-success display-1">matriculas</div>
+        {% if matriculas %}
+             <table class="table table-striped">
+                   <thead>
+                         <tr>
+                             <th>ID</th>
+                             <th>numero de matricula</th>
+                             <th>codigo del curso elegido</th>
+                             <th>rut del matriculado</th>
+                             <th>codigo de la sucursal</th>
+                             <th>fecha de creacion de la sucursal</th>
+                             <th>valor</th>
+                             <th colspan="3">Acciones</th>
+                         </tr>
+                   </thead>
+                   <tbody>
+                             {% for ma in matriculas %}   
+                                 <tr>
+                                     <td scope="row">{{ ma.id }}</td>
+                                     <td>{{ ma.MATNUMERO }}</td>
+                                     <td>{{ ma.TIPCURCODIGO.TIPCURCODIGO }}</td>
+                                     <td>{{ ma.ALUMRUT.ALUMRUT }}</td>
+                                     <td>{{ ma.SUCCODIGO.SUCCODIGO }}</td>
+                                     <td>{{ ma.MATFECHA }}</td>
+                                     <td>{{ ma.TIPCURCODIGO.TIPCURVALOR }}</td>
+                                     <td><a href="../editar-matricula/{{ ma.id }}" class="btn btn-warning">
+                                         <i class="bi bi-pencil"></i></a>
+                                     </td>
+                                     <td><a href="../eliminar-matricula/{{ma.id }}" class="btn btn-danger">
+                                         <i class="bi bi-trash"></i></a>
+                                     </td>
+                                     <td><a href="../ver-matriculas/{{ ma.id }}" class="btn btn-success">
+                                         <i class="bi bi-eye"></i></a>
+                                     </td>
+                                 </tr>
+                             {% endfor %}
+                             <tr>
+                                <td colspan="2">Cantidad de matriculas: {{total_cantidad}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="4">total: {{total_can_precio.TIPCURCODIGO__TIPCURVALOR__sum}}</td>
+                            </tr>
+                   </tbody>
+             </table>
+        {% else %}
+            <div class="alert alert-info">No Hay matriculas a Mostrar</div>
+        {% endif %}
+    </div>
+{% include 'footer.html' %}

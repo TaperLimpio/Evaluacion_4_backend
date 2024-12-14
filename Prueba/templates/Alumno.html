@@ -1,0 +1,54 @@
+{%include 'header.html'%}
+    <div class="container mt-5">
+        <div class="alert alert-success display-1">ALUMNOS</div>
+        {%if alumno%}
+         <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id de alumno</th>
+                    <th>rut de ciudad</th>
+                    <th>nombre de ciudad</th>
+                    <th>apellido paterno de alumno</th>
+                    <th>apellido materno de alumno</th>
+                    <th>direccion de alumno</th>
+                    <th>email de alumno</th>
+                    <th>fono de alumno</th>
+                    <th colspan="3">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for alu in alumno%}
+                <tr>
+                    <td>{{alu.id}}</td>
+                    <td>{{alu.ALUMRUT}}</td>
+                    <td>{{alu.ALUMNOMBRE}}</td>
+                    <td>{{alu.ALUMAPATERNO}}</td>
+                    <td>{{alu.ALUMAMATERNO}}</td>
+                    <td>{{alu.ALUMDIRECCION}}</td>
+                    <td>{{alu.ALUMEMAIL}}</td>
+                    <td>{{alu.ALUMFONO}}</td>
+                    <td>
+                        <a href="../view-alumnos/{{alu.id}}"
+                          class='btn btn-success'><i class="bi bi-eye"></i>
+                       </a>
+                    </td>
+                    <td>
+                        <a href="../actualizar_Alumno/{{alu.id}}"
+                          class='btn btn-warning'><i class="bi bi-pencil"></i>
+                       </a>
+                    </td>
+                    <td>
+                        <a href="../delete_Alumno/{{alu.id}}"
+                          class='btn btn-danger'><i class="bi bi-trash"></i>
+                       </a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+         </table>
+        {%else%}
+            <div class="alert alert-info">No Hay Alumnos!!!!</div>
+        {%endif%}
+        <a href="../ingresar-alumnos/" class="btn btn-success">Agregar</a>
+        </div>    
+{%include 'footer.html'%}

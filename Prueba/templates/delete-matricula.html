@@ -1,0 +1,33 @@
+{% include 'header.html' %}
+<div class='container mt-5'>
+    <div class="alert alert-danger display-1">Eliminar Matrícula</div>
+    <p>¿Estás seguro que deseas eliminar la matrícula con los siguientes datos?</p>
+    <table class="table table-striped">
+        <tr>
+            <th>Número de Matrícula</th>
+            <td>{{ matricula.MATNUMERO }}</td>
+        </tr>
+        <tr>
+            <th>Fecha</th>
+            <td>{{ matricula.MATFECHA }}</td>
+        </tr>
+        <tr>
+            <th>Tipo de Curso</th>
+            <td>{{ matricula.TIPCURCODIGO.TIPCURCODIGO }}</td>
+        </tr>
+        <tr>
+            <th>RUT del Alumno</th>
+            <td>{{ matricula.ALUMRUT.ALUMRUT }}</td>
+        </tr>
+        <tr>
+            <th>Código de Sucursal</th>
+            <td>{{ matricula.SUCCODIGO.SUCCODIGO }}</td>
+        </tr>
+    </table>
+    <form method="POST" action="/eliminar-matricula/{{ matricula.id }}/">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="/matriculas/" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% include 'footer.html' %}

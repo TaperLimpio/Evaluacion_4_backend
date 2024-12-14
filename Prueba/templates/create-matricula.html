@@ -1,0 +1,46 @@
+{% include 'header.html' %}
+<div class='container mt-5'>
+    <div class="alert alert-success display-1">{% if matricula %}Editar{% else %}Crear{% endif %} Matrícula</div>
+    <form method="POST" action="{% if matricula %}/editar-matricula/{{ matricula.id }}/{% else %}/crear-matricula/{% endif %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="txtmatricula" class="form-label">Número</label>
+                    <input type="text" class="form-control" id="txtmatricula" name="txtmatricula" placeholder="Número de matrícula" value="{% if matricula %}{{ matricula.MATNUMERO }}{% endif %}">
+                </div>
+                <div class="mb-3">
+                    <label for="xtmatricula1" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="xtmatricula1" name="xtmatricula1" placeholder="Fecha de creación de matrícula" value="{% if matricula %}{{ matricula.MATFECHA|date:'Y-m-d' }}{% endif %}">
+                </div>
+                <div class="mb-3">
+                    <select class="form-select" aria-label="Default Select" name="tipcurso">
+                        <option value="-1">Seleccionar tipo curso</option>
+                        {% for tipi in tipcursos %}
+                            <option value="{{ tipi.id }}" {% if matricula and tipi.id == matricula.TIPCURCODIGO.id %}selected{% endif %}>{{ tipi.TIPCURCODIGO }}, {{tipi.TIPCURNOMBRE}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select class="form-select" aria-label="Default Select" name="rut">
+                        <option value="-1">Seleccionar rut</option>
+                        {% for lu in ruts %}
+                            <option value="{{ lu.id }}" {% if matricula and lu.id == matricula.ALUMRUT.id %}selected{% endif %}>{{ lu.ALUMRUT }}, {{lu.ALUMNOMBRE}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select class="form-select" aria-label="Default Select" name="sucodigo">
+                        <option value="-1">Seleccionar Código de sucursal</option>
+                        {% for succ in sucodigos %}
+                            <option value="{{ succ.id }}" {% if matricula and succ.id == matricula.SUCCODIGO.id %}selected{% endif %}>{{ succ.SUCCODIGO }}, {{succ.SUCNOMBRE}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit" class="btn btn-success" value="Guardar">
+            </div>
+        </div>
+    </form>
+</div>
+{% include 'footer.html' %}
+

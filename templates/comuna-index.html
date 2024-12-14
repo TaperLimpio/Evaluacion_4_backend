@@ -1,0 +1,42 @@
+{%include 'header.html'%}
+<div class='container mt-5'>
+   <div class="alert alert-success display-1">COMUNAS</div>
+   {%if comunas%}
+        <table class="table table-striped">
+              <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Id. Ciudad</th>
+                        <th>Ciudad</th>
+                        <th colspan="3">Acciones</th>
+                    </tr>
+                <tbody>
+                        {%for com in comunas%}   
+                            <tr>
+                                <td scope="row">{{com.id}}</td>
+                                <td>{{com.nombre}}</td>
+                                <td>{{com.ciudad.id}}</td>
+                                <td>{{com.ciudad.nombre}}</td>
+                                <td><a href="../update-comuna/{{com.id}}" 
+                                    class="btn btn-warning">
+                                    <i class="bi bi-pencil"></i></a>
+                                </td>
+                                <td><a href="../delete-comuna/{{com.id}}" 
+                                    class="btn btn-danger">
+                                    <i class="bi bi-trash"></i></a>
+                                </td>
+                                <td><a href="../view-comuna/{{com.id}}" 
+                                    class="btn btn-success">
+                                    <i class="bi bi-eye"></i></a>
+                                </td>
+                            </tr>
+                            {%endfor%}
+                </tbody>
+        </table>
+        {%else%}
+              <div class="alert alert-info">No Hay Comunas a Mostrar</div>
+        {%endif%}
+        <a href="../create-comuna/" class="btn btn-success">Agregar</a>
+</div>
+{%include 'footer.html'%}   

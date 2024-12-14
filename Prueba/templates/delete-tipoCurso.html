@@ -1,0 +1,17 @@
+{%include 'header.html'%}
+    <div class="container mt-5">
+        <div class="alert alert-success display-1">Tipo Curso</div>
+        <form method='POST'>
+        {%csrf_token %}
+        <table class="table table-striped">
+          <tr><td>ID</td><td>{{curso.id}}</td></tr>
+          <tr><td>Curso Código</td><td>{{curso.TIPCURCODIGO}}</td></tr>
+          <tr><td>Curso Nombre</td><td>{{curso.TIPCURNOMBRE}}</td></tr>
+          <tr><td>Curso Valor</td><td>{{curso.TIPCURVALOR}}</td></tr>      
+        </table>
+       <a href="../tipo cursos/" class="btn btn-success">Volver</a>
+       
+        <input type='submit' class='btn btn-danger' value="borrar">
+        </form>
+    </div>
+{%include 'footer.html'%}

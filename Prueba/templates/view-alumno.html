@@ -1,0 +1,16 @@
+{%include 'header.html'%}
+    <div class="container mt-5">
+        <div class="alert alert-success display-1">ALUMNO</div>
+        <table class="table table-striped">
+          <tr><td>ID</td><td>{{alumno.id}}</td></tr>
+          <tr><td>ALUMRUT</td><td>{{alumno.ALUMRUT}}</td></tr>
+          <tr><td>ALUMNOMBRE</td><td>{{alumno.ALUMNOMBRE}}</td></tr>
+          <tr><td>ALUMAPATERNO</td><td>{{alumno.ALUMAPATERNO}}</td></tr>
+          <tr><td>ALUMAMATERNO</td><td>{{alumno.ALUMAMATERNO}}</td></tr>
+          <tr><td>ALUMDIRECCION</td><td>{{alumno.ALUMDIRECCION}}</td></tr>
+          <tr><td>ALUMEMAIL</td><td>{{alumno.ALUMEMAIL}}</td></tr>
+          <tr><td>ALUMFONO</td><td>{{alumno.ALUMFONO}}</td></tr>
+        </table>
+       <a href="../alumnos/" class="btn btn-success">Volver</a>
+    </div>
+{%include 'footer.html'%}

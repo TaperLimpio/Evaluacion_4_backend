@@ -1,0 +1,25 @@
+{%include 'header.html'%}
+<div class='container mt-5'>
+   <div class="alert alert-success display-1">Crear Comuna</div>
+    <form method="POST" action="/create-comuna/">
+         {% csrf_token %}
+         <div class="row">
+             <div class="col-md-6">
+                 <div class="mb-3">
+                    <label for="txtcomuna" class="form-label">Comuna</label>
+                    <input type="text" class="form-control" id="txtcomuna"
+                       name="txtcomuna" placeholder="Nombre de Comuna">
+                 </div>
+                 <select class="form-select" aria-label="Default Select" 
+                     name="ciudad">
+                     <option value="-1">Seleccionar Ciudad</option>
+                     {%for ciu in ciudades%}
+                        <option value="{{ciu.id}}">{{ciu.nombre}}</option>
+                    {%endfor%}
+                </select>
+                <input type="submit" class="btn btn-success" value="Guardar">
+             </div> 
+        </div>
+    </form>
+</div>
+{%include 'footer.html'%}   

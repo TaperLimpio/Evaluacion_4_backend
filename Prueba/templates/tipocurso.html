@@ -1,0 +1,46 @@
+{%include 'header.html'%}
+    <div class="container mt-5">
+        <div class="alert alert-success display-1">TIPOS DE CURSO</div>
+        {%if tipocursos%}
+         <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id del curso</th>
+                    <th>codigo del curso</th>
+                    <th>nombre del curso</th>
+                    <th>valor del curso</th>
+                    <th colspan="3">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for tip in tipocursos%}
+                <tr>
+                    <td>{{tip.id}}</td>
+                    <td>{{tip.TIPCURCODIGO}}</td>
+                    <td>{{tip.TIPCURNOMBRE}}</td>
+                    <td>{{tip.TIPCURVALOR}}</td>
+                    <td>
+                        <a href="../view-tipo curso/{{tip.id}}"
+                          class='btn btn-success'><i class="bi bi-eye"></i>
+                       </a>
+                    </td>
+                    <td>
+                        <a href="../actualizar_tipoCurso/{{tip.id}}"
+                          class='btn btn-warning'><i class="bi bi-pencil"></i>
+                       </a>
+                    </td>
+                    <td>
+                        <a href="../delete_tipoCurso/{{tip.id}}"
+                          class='btn btn-danger'><i class="bi bi-trash"></i>
+                       </a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+         </table>
+        {%else%}
+            <div class="alert alert-info">No Hay Tipo Cursos!!!!</div>
+        {%endif%}
+        <a href="../ingresar-tipos de curso/" class="btn btn-success">Agregar</a>
+        </div>    
+{%include 'footer.html'%}

@@ -1,0 +1,14 @@
+{% include 'header.html' %}
+<div class="container mt-5">
+    <div class="alert alert-success display-1">matricula</div>
+    <table class="table table-striped">
+        <tr><td>ID</td><td>{{ matricula.id }}</td></tr>
+        <tr><td>numero de matricula</td><td>{{ matricula.MATNUMERO  }}</td></tr>
+        <tr><td>fecha de matricula</td><td>{{ matricula.MATFECHA }}</td></tr>
+        <tr><td>codigo del tipo de curso</td><td>{{ matricula.TIPCURCODIGO.TIPCURCODIGO }}</td></tr>
+        <tr><td>rut del alumno</td><td>{{ matricula.ALUMRUT.ALUMRUT }}</td></tr>
+        <tr><td>codigo de la sucursal</td><td>{{ matricula.SUCCODIGO.SUCCODIGO }}</td></tr>
+    </table>
+    <a href="../matriculas/" class="btn btn-success">Volver</a>
+</div>
+{% include 'footer.html' %}

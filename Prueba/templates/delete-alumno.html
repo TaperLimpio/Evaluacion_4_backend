@@ -1,0 +1,21 @@
+{%include 'header.html'%}
+    <div class="container mt-5">
+        <div class="alert alert-success display-1">Alumno</div>
+        <form method='POST'>
+        {%csrf_token %}
+        <table class="table table-striped">
+          <tr><td>ID</td><td>{{alumno.id}}</td></tr>
+          <tr><td>Alumno rut</td><td>{{alumno.ALUMRUT}}</td></tr>
+          <tr><td>Alumno Nombre</td><td>{{alumno.ALUMNOMBRE}}</td></tr>
+          <tr><td>Alumno Apellido Paterno</td><td>{{alumno.ALUMAPATERNO}}</td></tr>
+          <tr><td>Alumno Apellido Materno</td><td>{{alumno.ALUMAMATERNO}}</td></tr>
+          <tr><td>Dirección Alumno</td><td>{{alumno.ALUMDIRECCION}}</td></tr>
+          <tr><td>Email Alumno</td><td>{{alumno.ALUMEMAIL}}</td></tr> 
+          <tr><td>Telefono Alumno</td><td>{{alumno.ALUMFONO}}</td></tr>      
+        </table>
+       <a href="../alumnos/" class="btn btn-success">Volver</a>
+       
+        <input type='submit' class='btn btn-danger' value="borrar">
+        </form>
+    </div>
+{%include 'footer.html'%}

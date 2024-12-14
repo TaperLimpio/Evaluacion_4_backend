@@ -1,0 +1,13 @@
+{% include 'header.html' %}
+<div class="container mt-5">
+    <div class="alert alert-success display-1">Sucursal</div>
+    <table class="table table-striped">
+        <tr><td>ID</td><td>{{ sucursal.id }}</td></tr>
+        <tr><td>Código de Sucursal</td><td>{{ sucursal.SUCCODIGO }}</td></tr>
+        <tr><td>Código de Ciudad</td><td>{{ sucursal.CIUCODIGO.CIUCODIGO }}</td></tr>
+        <tr><td>Nombre de Ciudad</td><td>{{ sucursal.CIUCODIGO.CIUNOMBRE }}</td></tr>
+        <tr><td>Nombre de Sucursal</td><td>{{ sucursal.SUCNOMBRE }}</td></tr>
+    </table>
+    <a href="../sucursal/" class="btn btn-success">Volver</a>
+</div>
+{% include 'footer.html' %}

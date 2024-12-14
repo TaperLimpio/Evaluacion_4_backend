@@ -1,0 +1,30 @@
+{%include 'header.html'%}
+<div class='container mt-5'>
+    <div class="alert alert-success display-1">{% if sucursales %}Editar{% else %}Crear{% endif %} Sucursales</div>
+    <form method="POST" action="{% if sucursales %}/sucursalUpdate/{{ sucursales.id }}/{% else %}/ingresar-sucursal/{% endif %}">
+         {% csrf_token %}
+         <div class="row">
+             <div class="col-md-6">
+                 <div class="mb-3">
+                    <label for="txtsucursal" class="form-label">nombre</label>
+                    <input type="text" class="form-control" id="txtsucursal"
+                       name="txtsucursal" placeholder="Nombre de sucursal ">
+                 </div>
+                 <div class="mb-3">
+                    <label for="txtsucursalcod" class="form-label">codigo</label>
+                    <input type="text" class="form-control" id="txtsucursalcod"
+                       name="txtsucursalcod" placeholder="codigo de sucursal ">
+                 </div>
+                 <select class="form-select" aria-label="Default Select" 
+                     name="ciudad">
+                     <option value="-1">Seleccionar Ciudad</option>
+                     {%for ciu in ciudades%}
+                        <option value="{{ciu.id}}">{{ciu.CIUNOMBRE}}</option>
+                    {%endfor%}
+                </select>
+                <input type="submit" class="btn btn-success" value="Guardar">
+             </div> 
+        </div>
+    </form>
+</div>
+{%include 'footer.html'%} 

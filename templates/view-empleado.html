@@ -1,0 +1,12 @@
+{%include 'header.html'%}
+    <div class="container mt-5">
+        <div class="alert alert-success display-1">EMPLEADOS</div>
+        <table class="table table-striped">
+          <tr><td>ID</td><td>{{empleado.id}}</td></tr>
+          <tr><td>Nombre</td><td>{{empleado.nombre}}</td></tr>
+          <tr><td>Email</td><td>{{empleado.email}}</td></tr>
+          <tr><td>Fono</td><td>{{empleado.fono}}</td></tr>
+        </table>
+       <a href="../empleados/" class="btn btn-success">Volver</a>
+    </div>
+{%include 'footer.html'%}
