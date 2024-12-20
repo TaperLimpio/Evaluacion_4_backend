@@ -1,8 +1,14 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from Prueba.serializers import AlumnoSerializer,MatriculaSerializer
 from Prueba.models import Ciudades,Tipocurso,Alumnos,Usuarios,Sucursales,Matriculas
 from django.db.models import Sum, Count
 from . import forms
 from .forms import CiudadesForm,TipoCursoForm,AlumnosForm,UsuarioForm
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
+import requests
+
 # Create your views here.
 
 
@@ -91,7 +97,7 @@ def delete_tipoCurso(request, id):
     return render(request, 'delete-tipoCurso.html', data)
 
 
-#Alumos
+#Alumnos
 
 def Index_Alumnos(request):
     alumno=Alumnos.objects.all() 
@@ -157,6 +163,42 @@ def AlumnoCriterio(request):
         data = {'alumnos':resultado}
         return render(request,'alumno_criterio.html',data)
 
+#alumnos-api
+@api_view(['GET','POST'])
+def Alumno_list(request):
+    if request.method=='GET':
+        alumnos = Alumnos.objects.all()
+        serializer = AlumnoSerializer(alumnos,many=True)
+        return Response(serializer.data)
+    
+    if request.method=='POST':
+        serializer=AlumnoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET','PUT','DELETE'])
+def Alumno_details(request,pk):
+    try:
+        alumno = Alumnos.objects.get(pk = pk)
+    except Alumnos.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == "GET":
+        serializer = AlumnoSerializer(alumno)
+        return Response(serializer.data)
+    
+    if request.method == "PUT":
+        serializer = AlumnoSerializer(alumno,data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+    if request.method== 'DELETE':
+        alumno.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 #login
 
@@ -394,4 +436,39 @@ def matriculaDelete(request, id):
         return redirect('/matriculas/')
     return render(request, 'delete-matricula.html', {'matricula': matricula})
 
-
+#Matriculas-api
+@api_view(['GET','POST'])
+def Matricula_list(request):
+    if request.method=='GET':
+        matricula = Matriculas.objects.all()
+        serializer = MatriculaSerializer(matricula,many=True)
+        return Response(serializer.data)
+    
+    if request.method=='POST':
+        serializer=MatriculaSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET','PUT','DELETE'])
+def Matricula_details(request,pk):
+    try:
+        matricula = Matriculas.objects.get(pk = pk)
+    except Matriculas.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == "GET":
+        serializer = MatriculaSerializer(matricula)
+        return Response(serializer.data)
+    
+    if request.method == "PUT":
+        serializer = MatriculaSerializer(matricula,data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+    if request.method== 'DELETE':
+        matricula.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

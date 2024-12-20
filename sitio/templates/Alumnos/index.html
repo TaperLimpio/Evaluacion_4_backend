@@ -1,0 +1,61 @@
+{% include '../header.html' %}
+<script>
+    document.addEventListener("DOMContentLoaded", function (){
+        const apiUrl = "http://127.0.0.1:8000/alumnos-API/";
+        const tablaBody = document.getElementById("tabla-registros").querySelector("tbody");
+
+        fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    tablaBody.innerHTML = "";
+                    data.forEach(emp => {
+                        const row = `
+                            <tr>
+                                <td>${emp.id}</td>
+                                <td>${emp.ALUMRUT}</td>
+                                <td>${emp.ALUMNOMBRE} ${emp.ALUMAPATERNO} ${emp.ALUMAMATERNO}</td>
+                                <td>${emp.ALUMDIRECCION}</td>
+                                <td>${emp.ALUMEMAIL}</td>
+                                <td>${emp.ALUMFONO}</td>
+                                <td>
+                                    <a href="/alumnos-view/${emp.id}" class="btn btn-success"><i class="bi bi-eye"></i></a>
+                                    <a href="/alumnos-update/${emp.id}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                                    <a href="/alumnos-delete/${emp.id}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                </td>
+                            </tr>
+                        `;
+                        tablaBody.innerHTML += row;
+                    });
+                    document.querySelectorAll(".view-btn").forEach(btn =>
+                        btn.addEventListener("click", handleView)
+                    );
+                    document.querySelectorAll(".edit-btn").forEach(btn =>
+                        btn.addEventListener("click", handleEdit)
+                    );
+                    document.querySelectorAll(".delete-btn").forEach(btn =>
+                        btn.addEventListener("click", handleDelete)
+                    );
+                })
+                .catch(error => console.error("Error al obtener los datos:", error));
+    })
+</script>
+<div class="container">
+    <h1>Lista de Alumnos</h1>
+    <table border="1" id="tabla-registros" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Email</th>
+                <th>Fono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Las filas se generarán dinámicamente aquí -->
+        </tbody>
+    </table>
+    <a href="../alumnos-create/" class="btn btn-success">Agregar</a>
+    </div> 
+</div>

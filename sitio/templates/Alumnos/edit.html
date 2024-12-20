@@ -1,0 +1,47 @@
+{%include '../header.html'%}
+    <div class="container">
+    <h1>Editar Alumno</h1>
+    {% if alumno %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input type="text" class="form-control" id="id" name="id" value={{alumno.id}} readonly=true>
+        </div>
+        <div class="mb-3">
+            <label for="rut" class="form-label">Rut</label>
+            <input type="text" class="form-control" id="rut" name="rut" value="{{alumno.ALUMRUT}}" required>
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="{{alumno.ALUMNOMBRE}}" required>
+        </div>
+        <div class="mb-3">
+            <label for="apaterno" class="form-label">Apellido Paterno</label>
+            <input type="text" class="form-control" id="apaterno" name="apaterno" value="{{alumno.ALUMAPATERNO}}" required>
+        </div>
+        <div class="mb-3">
+            <label for="amaterno" class="form-label">Apellido Materno</label>
+            <input type="text" class="form-control" id="amaterno" name="amaterno" value="{{alumno.ALUMAMATERNO}}" required>
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Direccion</label>
+            <input type="text" class="form-control" id="direccion" name="direccion"  value="{{alumno.ALUMDIRECCION}}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email"  value="{{alumno.ALUMEMAIL}}" required>
+        </div>
+        <div class="mb-3">
+            <label for="fono" class="form-label">Fono</label>
+            <input type="text" class="form-control" id="fono" name="fono"  value="{{alumno.ALUMFONO}}" required>
+        </div>
+        <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+    </form>
+        {% else %}
+        <p>Alumno no encontrado.</p>
+    {% endif %}
+    
+    <a href="/alumnos-index/" class="btn btn-success mt-2">Volver a la lista</a>
+</div>
+{%include '../footer.html'%}
